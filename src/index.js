@@ -49,6 +49,17 @@ const closureFunc = outerFunc();
 console.log(closureFunc());
 
 
+function createUser(name) {
+  return {
+    getName: function () {
+      return name;
+    }
+  }
+}
+
+
+const user = createUser('Name');
+console.log(user.getName())
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
