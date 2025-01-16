@@ -103,6 +103,28 @@ console.log(flat);
 
 const user = createUser('Name');
 console.log(user.getName())
+
+const arr8 = [1, 2, 3, 4, 5];
+let max = arr8[0];
+
+for (const el of arr8) {
+  if (el > max) {
+    max = el;
+  }
+}
+console.log('max', max);
+
+let maxNumber = arr8[0];
+arr8.forEach(el => {
+  if (el > maxNumber) {
+    maxNumber = el;
+  }
+})
+
+console.log('forEach', maxNumber);
+
+let maximumNum = arr8.reduce((acc, el) => el > acc ? el : acc, arr8[0])
+console.log(maximumNum)
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
