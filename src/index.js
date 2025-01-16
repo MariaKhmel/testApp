@@ -57,6 +57,49 @@ function createUser(name) {
   }
 }
 
+function multiply(factor) {
+  return function (num) {
+    return num * factor;
+  }
+}
+
+const double = multiply(2);
+console.log(double(5))
+
+const arr1 = [1, 2, 3, 4];
+const index = arr1.findIndex(el => el > 5);
+console.log(index); // 2
+
+const arr2 = [1, 2, 3, 2, 1];
+const uniqueArr = [...new Set(arr2)];
+console.log(uniqueArr);
+
+const uniqueArr2 = arr2.filter((el, index, array) => array.indexOf(el) === index);
+console.log(uniqueArr2)
+
+const uniqueArr3 = arr2.reduce((acc, el) => {
+  if (!acc.includes(el)) {
+    acc.push(el);
+  }
+  return acc;
+}, []);
+console.log(uniqueArr3)
+
+//summation
+const arr4 = [1, 2, 3, 3, 3, 4, 4, 5, 5, 5];
+
+const sum = arr4.reduce((acc, currEl) => acc += currEl, 0);
+console.log(sum);
+
+const maxNum = arr4.reduce((acc, curEl) => curEl > acc ? curEl : acc, arr4[0]);
+console.log(maxNum);
+
+const newArr = arr.concat(arr1, arr2);
+console.log(newArr);
+
+const arr5 = [1, 2, 3, [4, 5], [6, 7]];
+const flat = arr5.reduce((acc, curEl) => acc.concat(curEl), []);
+console.log(flat);
 
 const user = createUser('Name');
 console.log(user.getName())
