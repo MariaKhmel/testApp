@@ -123,6 +123,31 @@ arr8.forEach(el => {
 
 console.log('forEach', maxNumber);
 
+///closure
+
+const createCounter = () => {
+  let counter = 0;
+  return {
+    increment: function () {
+      return counter += 1;
+    },
+    decrement: function () {
+      return counter -= 1;
+    },
+    getCurrentCount: function () {
+      return counter;
+    }
+  }
+}
+
+const counter1 = createCounter();
+console.log(counter1.increment());
+console.log(counter1.increment());
+console.log(counter1.increment());
+console.log(counter1.increment());
+console.log('decr', counter1.decrement());
+console.log(counter1.getCurrentCount());
+
 let maximumNum = arr8.reduce((acc, el) => el > acc ? el : acc, arr8[0])
 console.log(maximumNum)
 ReactDom.createRoot(document.getElementById("root")).render(
