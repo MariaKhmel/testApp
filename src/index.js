@@ -150,6 +150,10 @@ console.log(counter1.getCurrentCount());
 
 let maximumNum = arr8.reduce((acc, el) => el > acc ? el : acc, arr8[0])
 console.log(maximumNum)
+
+const arr9 = [1, 2, 3, 3, 4, 4, 5];
+const uniqueArray = arr9.filter((el, index, array) => array.indexOf(el) === index);
+console.log('uniquearr', uniqueArray)
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
