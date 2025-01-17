@@ -153,7 +153,33 @@ console.log(maximumNum)
 
 const arr9 = [1, 2, 3, 3, 4, 4, 5];
 const uniqueArray = arr9.filter((el, index, array) => array.indexOf(el) === index);
-console.log('uniquearr', uniqueArray)
+console.log('uniquearr', uniqueArray);
+const nestedArr = [1, [2, 3], [3, 4, [5, 6]]];
+
+// console.log(nestedArr.flat(2))
+// const flatArr = nestedArr.reduce((acc, currentEl) => acc.concat(currentEl), []);
+// console.log(flatArr)
+const flatten = arr => {
+  return arr.reduce((acc, currentEl) => {
+    if (Array.isArray(currentEl)) {
+      console.log('here')
+      return acc.concat(flatten(currentEl));
+    }
+
+    return acc.concat(currentEl);
+
+  }, []);
+}
+function logArguments() {
+  console.log(arguments);
+}
+logArguments(1, 2, 3); // Output: { '0': 1, '1': 2, '2': 3 }
+
+(function func() {
+  console.log('i am iife');
+})()
+
+console.log(flatten(nestedArr));
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
