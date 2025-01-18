@@ -179,6 +179,18 @@ logArguments(1, 2, 3); // Output: { '0': 1, '1': 2, '2': 3 }
   console.log('i am iife');
 })()
 
+function normalFunction() {
+  console.log(this);
+}
+
+const arrowFunction = () => {
+  console.log(this);
+};
+
+
+normalFunction();
+arrowFunction();
+
 console.log(flatten(nestedArr));
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
