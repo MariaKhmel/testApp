@@ -211,9 +211,67 @@ Promise.resolve('resolved promise').then(value => console.log(value));
 Promise.reject('rejected promise').catch(error => console.log(error));
 
 const fetchUserFromServer = (username, onSuccess, onError) => {
-
+  console.log('username', username);
+  const isSuccess = true;
+  setTimeout(() => {
+    if (isSuccess) {
+      onSuccess('success value')
+    } else {
+      onError('error value')
+    }
+  }, 2000);
 }
+
+function onSuccess(value) {
+  console.log(value);
+}
+
+function onError(value) {
+  console.log(value);
+}
+
+fetchUserFromServer('Mango', onSuccess, onError)
 console.log(flatten(nestedArr));
+
+
+const fetchUserWithPromise = (username) => {
+  const isSuccess = true;
+  return new Promise((resolve, reject) => {
+    console.log(`fetching data for ${username} `);
+    setTimeout(() => {
+      if (isSuccess) {
+        resolve('success in promise')
+      } else {
+        reject('error is promise')
+      }
+    }, 2000);
+
+  })
+}
+
+
+fetchUserWithPromise('Poly')
+  .then(value => console.log(value))
+  .catch(value => console.log(value))
+
+const makePromise = (text, delay) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(text);
+    }, delay);
+  })
+}
+
+const promise1 = makePromise('promise1 value', 2000);
+const promise2 = makePromise('promise2 value', 2000);
+const promise3 = makePromise('promise3 value', 2000);
+
+Promise.all([promise1, promise2, promise3])
+  .then(result => console.log(result));
+
+Promise.race([promise1, promise2, promise3])
+  .then(result => console.log(result));
+
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
