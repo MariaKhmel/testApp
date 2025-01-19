@@ -191,6 +191,28 @@ const arrowFunction = () => {
 normalFunction();
 arrowFunction();
 
+const isSuccess = false;
+const promise = new Promise((resolve, reject) => {
+  if (isSuccess) {
+    resolve('It is success!');
+  } else {
+    reject('Failed!');
+  }
+})
+
+promise
+  .then(value => console.log(value))
+  .catch(error => console.log(error))
+  .finally(() => console.log('finally!'))
+
+new Promise(resolve => resolve('successfully!')).then(value => console.log(value));
+new Promise((resolve, reject) => reject('Error happened!')).catch(error => console.log(error));
+Promise.resolve('resolved promise').then(value => console.log(value));
+Promise.reject('rejected promise').catch(error => console.log(error));
+
+const fetchUserFromServer = (username, onSuccess, onError) => {
+
+}
 console.log(flatten(nestedArr));
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
