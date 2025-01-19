@@ -272,6 +272,90 @@ Promise.all([promise1, promise2, promise3])
 Promise.race([promise1, promise2, promise3])
   .then(result => console.log(result));
 
+const greetUser = (username) => {
+  if (username === '' || username === undefined) {
+    return Promise.reject('Username should not be empty')
+  }
+
+  return Promise.resolve(`Hello ${username}`)
+}
+
+greetUser().
+  then((value) => console.log(value))
+  .catch(value => console.log(value));
+
+const p1 = Promise.resolve(1);
+const p2 = Promise.resolve(2);
+const p3 = Promise.resolve(3);
+
+const res = Promise.all([p1, p2, p3])
+  .then(values => console.log(values))
+  .catch(error => console.log(error));
+
+// function getUser(callback) {
+//   setTimeout(() => {
+//     console.log('fetched user');
+//     callback('111111');
+//   }, 1000)
+// }
+
+
+// function getOrders(userId, callback) {
+//   setTimeout(() => {
+//     console.log(`get orders for ${userId}`);
+//     callback(['order1', 'order2', 'order3']);
+//   }, 1000);
+// }
+
+// function processPayment(order, callback) {
+//   setTimeout(() => {
+//     console.log(`process payment for ${order} `);
+//     callback('Payment Successful');
+//   }, 1000);
+// }
+
+// getUser(userId => getOrders(userId, (orders) => {
+//   processPayment(orders[0], (paymentstatus) => {
+//     console.log(paymentstatus);
+//   })
+// }))
+
+function getUser() {
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('fetching user');
+      resolve({ userId: 1 })
+    })
+  }, 1000);
+}
+
+
+function getOrders(userId) {
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('fetching orders for' + userId)
+      resolve(['order1', 'order2', 'order3'])
+    })
+  }, 1000);
+}
+
+function processPayment(order) {
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('payment for' + order);
+      resolve('payment is successful')
+    })
+  }, 1000);
+}
+
+
+getUser().then(user => getOrders(user.userId))
+  .then(orders => processPayment(orders[0]))
+  .then(response => console.log(response));
+
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
